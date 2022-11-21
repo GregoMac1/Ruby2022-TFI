@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: "home#index"
-  
-  resources :branches
+  root to: "branches#index"
+
+  resources :branches do
+    resources :schedules
+  end
 end
