@@ -1,4 +1,3 @@
-class Branch < ActiveRecord::Base
-  attr_accessible :name, :address, :phone
-
+class Branch < ApplicationRecord
+  validates :name, :address, :phone, presence: true
 end

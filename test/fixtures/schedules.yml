@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: MyString
+  start: MyString
+  end: MyString
+  branch: one
+
+two:
+  day: MyString
+  start: MyString
+  end: MyString
+  branch: two

@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :branchs
+  root to: "home#index"
+  
+  resources :branches
 end

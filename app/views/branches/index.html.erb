@@ -1,0 +1,13 @@
+<h2>Branches</h2>
+
+<%= link_to "Nueva sucursal", new_branch_path %>
+
+<ul>
+  <% @branches.each do |branch| %> 
+    <li>
+      <%= link_to branch.name, branch %>
+      <%= branch.address %>
+      <%= branch.phone %>
+    </li>
+  <% end %>
+</ul>

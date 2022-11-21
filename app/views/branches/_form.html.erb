@@ -1,0 +1,30 @@
+<%= form_with model: @branch do |form| %>
+  <% if @branch.errors.any? %>
+    <div id="error_explanation">
+      <h4>Se detectaron <%= pluralize(@branch.errors.count, "error", locale: :es) %>:</h4>
+
+      <ul>
+      <% @branch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

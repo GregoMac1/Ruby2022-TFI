@@ -1,0 +1,9 @@
+<h2>Branch</h2>
+<%= @branch.name %>
+<%= @branch.address %>
+<%= @branch.phone %>
+<%= link_to "Editar", edit_branch_path(@branch) %>
+<%= link_to "Borrar", branch_path(@branch), data: {
+  turbo_method: "delete",
+  turbo_confirm: "¿Estás seguro?"
+} %>
