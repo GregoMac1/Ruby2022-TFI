@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :branches do
     resources :schedules
   end
+
+  resources :users
 end

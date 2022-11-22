@@ -1,0 +1,11 @@
+<%= form_with model: [ @branch, @branch.schedules.build ] do |f| %>
+  <%= f.label :day %>
+  <%= f.select :day, options_for_select([
+    "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+  ]) %>
+  <%= f.label :start %>
+  <%= f.time_field :start %>
+  <%= f.label :end %>
+  <%= f.time_field :end %>
+  <%= f.submit "Agregar" %>
+<% end %>

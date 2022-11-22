@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= branch.name %>
+  </td>
+  <td>
+    <%= branch.address %>
+  </td>
+  <td>
+    <%= branch.phone %>
+  </td>
+  <td>
+    <%= link_to "Ver", branch_path(branch), class: "btn btn-secondary" %>
+    <%= link_to "Editar", edit_branch_path(branch), class: "btn btn-warning" %>
+    <%= link_to "Borrar", branch_path(branch), class: "btn btn-primary", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </td>
+</tr>

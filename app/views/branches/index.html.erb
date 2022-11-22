@@ -1,13 +1,24 @@
-<h2>Sucursales</h2>
+<div class="row">
+  <div class="col">
+    <h2>Sucursales</h2>
+  </div>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Nueva", new_branch_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-<%= link_to "Nueva sucursal", new_branch_path %>
+<hr>
 
-<ul>
-  <% @branches.each do |branch| %> 
-    <li>
-      <%= link_to branch.name, branch %>
-      <%= branch.address %>
-      <%= branch.phone %>
-    </li>
-  <% end %>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @branches %>
+  </tbody>
+</table>

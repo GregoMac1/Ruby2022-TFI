@@ -24,3 +24,13 @@ body {
   margin-top: 2%;
   min-height: 10vh;
 }
+
+.btn-primary {
+  background-color: #CC0000;
+  border-color: #CC0000;
+}
+
+.btn-primary:hover {
+  background-color: #6d0808;
+  border-color: #6d0808;
+}

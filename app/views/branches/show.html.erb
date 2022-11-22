@@ -7,3 +7,20 @@
   turbo_method: "delete",
   turbo_confirm: "¿Estás seguro?"
 } %>
+
+<h3>Horarios</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Día</th>
+      <th scope="col">Hora de apertura</th>
+      <th scope="col">Hora de cierre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @branch.schedules %>
+  </tbody>
+</table>
+
+<h3>Agregar horario</h3>
+<%= render "schedules/form" %>
