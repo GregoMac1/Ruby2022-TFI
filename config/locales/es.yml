@@ -1,5 +1,19 @@
 es:
   activerecord:
+    models:
+      branch: Sucursal
+      schedule: Horario
+      turn: Turno
+      user: Usuario
+    attributes:
+      branch:
+        name: Nombre
+        address: Dirección
+        phone: Teléfono
+      schedule:
+        day: Día
+        start: Inicio
+        end: Fin
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
