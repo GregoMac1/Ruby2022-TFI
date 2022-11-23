@@ -1,17 +1,20 @@
 class SchedulesController < ApplicationController
-  def index
+  before_action :get_branch
+
+  def get_branch
     @branch = Branch.find(params[:branch_id])
+  end
+
+  def index
     redirect_to @branch
   end
 
   def create
-    @branch = Branch.find(params[:branch_id])
     @schedule = @branch.schedules.create(schedule_params)
-    redirect_to branch_path(@branch)
+    redirect_to @branch
   end
 
   def edit
-    @branch = Branch.find(params[:branch_id])
     @schedule = @branch.schedules.find(params[:id])
   end
 
