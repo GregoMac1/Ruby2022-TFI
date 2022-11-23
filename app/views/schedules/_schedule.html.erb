@@ -8,4 +8,11 @@
   <td>
     <%= schedule.end %>
   </td>
+  <td style="text-align: right;">
+    <%= link_to "Editar", edit_branch_schedule_path(@branch, schedule), class: "btn btn-warning" %>
+    <%= link_to "Borrar", branch_schedule_path(@branch, schedule), class: "btn btn-primary", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </td>
 </tr>

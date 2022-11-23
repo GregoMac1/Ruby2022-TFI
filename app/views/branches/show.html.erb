@@ -1,20 +1,51 @@
-<h2>Sucursal</h2>
-<%= @branch.name %>
-<%= @branch.address %>
-<%= @branch.phone %>
-<%= link_to "Editar", edit_branch_path(@branch) %>
-<%= link_to "Borrar", branch_path(@branch), data: {
-  turbo_method: "delete",
-  turbo_confirm: "¿Estás seguro?"
-} %>
+<div class="row">
+  <div class="col">
+    <h3>Sucursal</h3>
+  </div>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Editar", edit_branch_path(@branch), class: "btn btn-warning" %>
+    <%= link_to "Borrar", branch_path(@branch), class: "btn btn-primary", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </div>
+</div>
 
-<h3>Horarios</h3>
+<hr>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @branch.name %>
+</p>
+<p>
+  <strong>Dirección:</strong>
+  <%= @branch.address %>
+</p>
+<p>
+  <strong>Teléfono:</strong>
+  <%= @branch.phone %>
+</p>
+
+<br>
+
+<div class="row">
+  <div class="col">
+    <h4>Horarios</h4>
+  </div>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Agregar", new_branch_schedule_path(@branch), class: "btn btn-primary" %>
+  </div>
+</div>
+
+<hr>
+
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Día</th>
       <th scope="col">Hora de apertura</th>
       <th scope="col">Hora de cierre</th>
+      <th scope="col" style="text-align: right;">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -22,5 +53,8 @@
   </tbody>
 </table>
 
-<h3>Agregar horario</h3>
-<%= render "schedules/form" %>
+<br>
+
+<div class="text-center">
+  <%= link_to "Volver", branches_path, class: "btn btn-secondary" %>
+</div>

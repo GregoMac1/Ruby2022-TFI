@@ -1,11 +1,21 @@
-<%= form_with model: [ @branch, @branch.schedules.build ] do |f| %>
-  <%= f.label :day %>
-  <%= f.select :day, options_for_select([
-    "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
-  ]) %>
-  <%= f.label :start %>
-  <%= f.time_field :start %>
-  <%= f.label :end %>
-  <%= f.time_field :end %>
-  <%= f.submit "Agregar" %>
+<%= form_with model: [ @branch, @branch.schedules.build ] do |form| %>
+  <div class="mb-3">
+    <%= form.label :day, class: "form-label" %>
+    <%= form.select :day, options_for_select([
+      "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+    ]), class: "form-select" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :start, class: "form-label" %>
+    <%= form.time_field :start, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :end, class: "form-label" %>
+    <%= form.time_field :end, class: "form-control" %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Volver", branch_path, class: "btn btn-secondary" %>
+  </div>
 <% end %>
