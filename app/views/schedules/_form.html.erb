@@ -3,7 +3,7 @@
     <%= form.label :day, class: "form-label" %>
     <%= form.select :day, options_for_select([
       "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
-    ]), class: "form-select" %>
+    ]), {include_blank: true}, {class: "form-select"} %>
   </div>
   <div class="mb-3">
     <%= form.label :start, class: "form-label" %>
