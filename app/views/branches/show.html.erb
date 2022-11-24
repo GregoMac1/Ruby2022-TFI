@@ -4,7 +4,7 @@
   </div>
   <div class="col" style="text-align: right;">
     <%= link_to "Editar", edit_branch_path(@branch), class: "btn btn-warning" %>
-    <%= link_to "Borrar", branch_path(@branch), class: "btn btn-primary", data: {
+    <%= link_to "Borrar", branch_path(@branch), class: "btn btn-danger", data: {
       turbo_method: "delete",
       turbo_confirm: "¿Estás seguro?"
     } %>
@@ -33,7 +33,7 @@
     <h4>Horarios</h4>
   </div>
   <div class="col" style="text-align: right;">
-    <%= link_to "Agregar", new_branch_schedule_path(@branch), class: "btn btn-primary" %>
+    <%= link_to "Agregar", new_branch_schedule_path(@branch), class: "btn btn-danger" %>
   </div>
 </div>
 

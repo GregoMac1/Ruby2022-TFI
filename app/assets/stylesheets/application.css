@@ -25,12 +25,7 @@ body {
   min-height: 10vh;
 }
 
-.btn-primary {
+.btn-danger {
   background-color: #CC0000;
   border-color: #CC0000;
-}
-
-.btn-primary:hover {
-  background-color: #6d0808;
-  border-color: #6d0808;
 }
