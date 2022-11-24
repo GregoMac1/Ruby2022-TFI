@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :get_branch, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :get_branch, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :get_schedule, only: [:edit, :update, :destroy]
 
   def get_branch
@@ -11,6 +11,10 @@ class SchedulesController < ApplicationController
   end
 
   def index
+    redirect_to @branch
+  end
+
+  def show
     redirect_to @branch
   end
 

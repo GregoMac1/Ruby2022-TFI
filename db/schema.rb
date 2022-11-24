@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_163144) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_004223) do
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -21,8 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_163144) do
 
   create_table "schedules", force: :cascade do |t|
     t.string "day"
-    t.string "start"
-    t.string "end"
+    t.time "start"
+    t.time "end"
     t.integer "branch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
