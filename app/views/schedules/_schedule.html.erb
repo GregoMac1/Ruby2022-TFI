@@ -3,10 +3,10 @@
     <%= schedule.day %>
   </td>
   <td>
-    <%= schedule.start %>
+    <%= schedule.start.strftime("%H:%M") %>
   </td>
   <td>
-    <%= schedule.end %>
+    <%= schedule.end.strftime("%H:%M") %>
   </td>
   <td style="text-align: right;">
     <%= link_to "Editar", edit_branch_schedule_path(@branch, schedule), class: "btn btn-warning" %>
