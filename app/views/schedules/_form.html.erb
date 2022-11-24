@@ -1,7 +1,7 @@
 <%= form_with model: [ @branch, @schedule ] do |form| %>
   <% if @schedule.errors.any? %>
     <div class="alert alert-danger" role="alert">
-      <strong>Se detectaron <%= pluralize(@schedule.errors.count, "error", locale: :es) %>:</strong>
+      <strong>Se detectaron errores:</strong>
 
       <ul>
       <% @schedule.errors.full_messages.each do |message| %>
