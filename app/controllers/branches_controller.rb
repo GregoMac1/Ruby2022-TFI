@@ -1,10 +1,15 @@
 class BranchesController < ApplicationController
+  before_action :get_branch, only: [:show, :edit, :update, :destroy]
+
+  def get_branch
+    @branch = Branch.find(params[:id])
+  end
+
   def index
     @branches = Branch.all
   end
 
   def show
-    @branch = Branch.find(params[:id])
   end
 
   def new
@@ -21,11 +26,9 @@ class BranchesController < ApplicationController
   end
 
   def edit
-    @branch = Branch.find(params[:id])
   end
 
   def update
-    @branch = Branch.find(params[:id])
     if @branch.update(branch_params)
       redirect_to @branch
     else
@@ -34,7 +37,6 @@ class BranchesController < ApplicationController
   end
 
   def destroy
-    @branch = Branch.find(params[:id])
     @branch.destroy
     redirect_to branches_url, status: :see_other
   end

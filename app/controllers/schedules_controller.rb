@@ -1,28 +1,46 @@
 class SchedulesController < ApplicationController
-  before_action :get_branch
+  before_action :get_branch, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :get_schedule, only: [:edit, :update, :destroy]
 
   def get_branch
     @branch = Branch.find(params[:branch_id])
+  end
+
+  def get_schedule
+    @schedule = Schedule.find(params[:id])
   end
 
   def index
     redirect_to @branch
   end
 
+  def new
+    @schedule = Schedule.new
+  end
+
   def create
     @schedule = @branch.schedules.create(schedule_params)
-    redirect_to @branch
+    if @schedule.save
+      redirect_to @branch
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
-    @schedule = @branch.schedules.find(params[:id])
+  end
+
+  def update
+    if @schedule.update(schedule_params)
+      redirect_to @branch
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @branch = Branch.find(params[:branch_id])
-    @schedule = @branch.schedules.find(params[:id])
     @schedule.destroy
-    redirect_to branch_path(@branch), status: :see_other
+    redirect_to @branch, status: :see_other
   end
 
   private
