@@ -14,6 +14,12 @@ es:
         day: Día
         start: Inicio
         end: Fin
+      user:
+        email: Email
+        name: Nombre
+        password: Contraseña
+        role: Rol
+        branch: Sucursal
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'

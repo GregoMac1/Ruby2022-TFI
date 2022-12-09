@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= user.name %>
+  </td>
+  <td>
+    <%= user.role %>
+  </td>
+  <td style="text-align: right;">
+    <%= link_to "Ver", user_path(user), class: "btn btn-secondary" %>
+    <%= link_to "Editar", edit_user_path(user), class: "btn btn-warning" %>
+    <%= link_to "Borrar", user_path(user), class: "btn btn-danger", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </td>
+</tr>

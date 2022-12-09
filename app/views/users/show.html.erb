@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col">
+    <h3>Usuario</h3>
+  </div>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Editar", edit_user_path(@user), class: "btn btn-warning" %>
+    <%= link_to "Borrar", user_path(@user), class: "btn btn-danger", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </div>
+</div>
+
+<hr>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>Rol:</strong>
+  <%= @user.role %>
+</p>
+<p>
+  <strong>Sucursal:</strong>
+  <%= @user.branch %>
+</p>
+
+<br>
+
+<div class="text-center">
+  <%= link_to "Volver", users_path, class: "btn btn-secondary" %>
+</div>
