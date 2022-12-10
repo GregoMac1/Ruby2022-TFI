@@ -2,9 +2,11 @@
   <div class="col">
     <h3>Usuarios</h3>
   </div>
-  <div class="col" style="text-align: right;">
-    <%= link_to "Nuevo", new_user_path, class: "btn btn-danger" %>
-  </div>
+  <% if Current.user.has_role? :admin %>
+    <div class="col" style="text-align: right;">
+      <%= link_to "Nuevo", new_user_path, class: "btn btn-danger" %>
+    </div>
+  <% end %>
 </div>
 
 <hr>

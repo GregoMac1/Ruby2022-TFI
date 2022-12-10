@@ -19,10 +19,12 @@
   </td>
   <td style="text-align: right;">
     <%= link_to "Ver", user_path(user), class: "btn btn-secondary" %>
-    <%= link_to "Editar", edit_user_path(user), class: "btn btn-warning" %>
-    <%= link_to "Borrar", user_path(user), class: "btn btn-danger", data: {
-      turbo_method: "delete",
-      turbo_confirm: "¿Estás seguro?"
-    } %>
+    <% if Current.user.has_role? :admin %>
+      <%= link_to "Editar", edit_user_path(user), class: "btn btn-warning" %>
+      <%= link_to "Borrar", user_path(user), class: "btn btn-danger", data: {
+        turbo_method: "delete",
+        turbo_confirm: "¿Estás seguro?"
+      } %>
+    <% end %>
   </td>
 </tr>
