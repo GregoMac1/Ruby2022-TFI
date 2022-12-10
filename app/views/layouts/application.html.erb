@@ -51,12 +51,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="/account">Mi cuenta</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Cerrar sesión</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
     <div class="container-sm" id="content">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
     <div id="footer">
