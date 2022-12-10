@@ -21,6 +21,16 @@
   <strong>Nombre:</strong>
   <%= @user.name %>
 </p>
+<p>
+  <strong>Rol:</strong>
+  <% if @user.has_role? :admin %>
+    Administrador
+  <% elsif @user.has_role? :manager %>
+    Personal
+  <% elsif @user.has_role? :client %>
+    Cliente
+  <% end %>
+</p>
 
 <br>
 
