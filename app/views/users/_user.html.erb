@@ -15,7 +15,11 @@
     <% end %>
   </td>
   <td>
-    -
+    <% if (user.has_role? :manager) && (user.branch_id) %>
+      <%= Branch.find(user.branch_id).name %>
+    <% else %>
+      -
+    <% end %>
   </td>
   <td style="text-align: right;">
     <%= link_to "Ver", user_path(user), class: "btn btn-secondary" %>

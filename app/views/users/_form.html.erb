@@ -25,6 +25,12 @@
       "Cliente", "Personal", "Administrador"
     ], :selected => form.object.roles), {prompt: "Seleccione un rol..."}, {class: "form-select"} %>
   </div>
+  <% if @user.has_role? :manager %>
+    <div class="mb-3">
+      <%= form.label "Sucursal", class: "form-label" %>
+      <%= form.select :branch_id, options_for_select(Branch.all.map{|b| [b.name, b.id]}, :selected => form.object.branch_id), {prompt: "Seleccione una sucursal..."}, {class: "form-select"} %>
+    </div>
+  <% end %>
   <div class="mb-3">
     <%= form.label :password, class: "form-label" %>
     <%= form.password_field :password, class: "form-control", placeholder: "Ingrese una contraseña..." %>

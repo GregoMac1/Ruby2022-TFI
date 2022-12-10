@@ -33,6 +33,16 @@
     Cliente
   <% end %>
 </p>
+<% if @user.has_role? :manager %>
+  <p>
+    <strong>Sucursal:</strong>
+    <% if @user.branch_id %>
+      <%= Branch.find(@user.branch_id).name %>
+    <% else %>
+      -
+    <% end %>
+  </p>
+<% end %>
 
 <br>
 
