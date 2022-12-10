@@ -10,10 +10,11 @@ class RegistrationsController < ApplicationController
       redirect_to root_path
     else
       redirect_to sign_up_path
+    end
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

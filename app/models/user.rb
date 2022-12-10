@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_one :branch, dependent: :destroy
+  has_secure_password
 
-  validates :email, :name, :password, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
 end
