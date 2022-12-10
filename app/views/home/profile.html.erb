@@ -1,0 +1,16 @@
+<h3>Mi perfil</h3>
+
+<hr>
+
+<p>
+  <strong>Correo electrónico:</strong>
+  <%= Current.user.email %>
+</p>
+<p>
+  <strong>Nombre:</strong>
+  <%= Current.user.name %>
+</p>
+
+<br>
+
+<%= link_to "Modificar contraseña", edit_password_path, class: "btn btn-danger" %>

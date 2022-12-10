@@ -1,0 +1,17 @@
+<h3>Modificar contraseña</h3>
+
+<hr>
+
+<%= form_with model: Current.user, url: edit_password_path do |form| %>
+  <div class="mb-3">
+    <%= form.label "Nueva contraseña", class: "form-label" %>
+    <%= form.password_field :password, class: "form-control", placeholder: "Ingrese su contraseña..." %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Repetir nueva contraseña", class: "form-label" %>
+    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Ingrese su contraseña..." %>
+  </div>
+  <div class="text-center">
+    <%= form.submit class: "btn btn-danger", value: "Modificar" %>
+  </div>
+<% end %>
