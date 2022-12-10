@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_logged_in!
 
   def get_user
     @user = User.find(params[:id])
