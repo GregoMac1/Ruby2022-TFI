@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_action :require_user_not_logged_in!
+  
   def new
     @user = User.new
   end

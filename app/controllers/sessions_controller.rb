@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_user_not_logged_in!
+  
   def new
   end
 

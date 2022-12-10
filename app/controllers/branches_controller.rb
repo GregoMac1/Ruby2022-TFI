@@ -1,6 +1,8 @@
 class BranchesController < ApplicationController
   before_action :get_branch, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in!
+  before_action :require_admin!, except: [:index, :show]
+  before_action :require_at_least_manager!
 
   def get_branch
     @branch = Branch.find(params[:id])
