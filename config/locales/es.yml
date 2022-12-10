@@ -15,7 +15,7 @@ es:
         start: Inicio
         end: Fin
       user:
-        email: Email
+        email: Correo electrónico
         name: Nombre
         password: Contraseña
         role: Rol

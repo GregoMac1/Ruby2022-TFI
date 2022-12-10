@@ -1,0 +1,29 @@
+<h3>Registrarse</h3>
+
+<hr>
+
+<%= form_with model: @user, url: sign_up_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su correo electrónico..." %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su correo electrónico..." %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password, class: "form-label" %>
+    <%= form.password_field :password, class: "form-control", placeholder: "Ingrese su contraseña..." %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Repetir contraseña", class: "form-label" %>
+    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Ingrese su contraseña..." %>
+  </div>
+  <div class="text-center">
+    <%= form.submit class: "btn btn-danger", value: "Registrarse" %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <%= link_to "Iniciar sesión", "/sign_in", class: "link-secondary" %>
+</div>
