@@ -5,7 +5,7 @@
 <%= form_with model: @user, url: sign_up_path do |form| %>
   <div class="mb-3">
     <%= form.label :name, class: "form-label" %>
-    <%= form.email_field :email, class: "form-control", placeholder: "Ingrese su correo electrónico..." %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Ingrese su nombre..." %>
   </div>
   <div class="mb-3">
     <%= form.label :email, class: "form-label" %>
