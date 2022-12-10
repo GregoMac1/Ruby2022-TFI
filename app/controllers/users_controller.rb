@@ -9,7 +9,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if Current.user.has_role? :admin
+      @users = User.all
+    else
+      @users = User.with_role :client
+    end
   end
 
   def show
