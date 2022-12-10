@@ -8,11 +8,13 @@
   <td>
     <%= schedule.end.strftime("%H:%M") %>
   </td>
-  <td style="text-align: right;">
-    <%= link_to "Editar", edit_branch_schedule_path(@branch, schedule), class: "btn btn-warning" %>
-    <%= link_to "Borrar", branch_schedule_path(@branch, schedule), class: "btn btn-danger", data: {
-      turbo_method: "delete",
-      turbo_confirm: "¿Estás seguro?"
-    } %>
-  </td>
+  <% if Current.user.has_role? :admin %>
+    <td style="text-align: right;">
+      <%= link_to "Editar", edit_branch_schedule_path(@branch, schedule), class: "btn btn-warning" %>
+      <%= link_to "Borrar", branch_schedule_path(@branch, schedule), class: "btn btn-danger", data: {
+        turbo_method: "delete",
+        turbo_confirm: "¿Estás seguro?"
+      } %>
+    </td>
+  <% end %>
 </tr>
