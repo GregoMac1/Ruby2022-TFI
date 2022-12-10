@@ -20,10 +20,10 @@
     <%= form.text_field :name, class: "form-control", placeholder: "Ingrese un nombre..." %>
   </div>
   <div class="mb-3">
-    <%= form.label :role, class: "form-label" %>
+    <%= form.label "Rol", class: "form-label" %>
     <%= form.select :role, options_for_select([
       "Cliente", "Personal", "Administrador"
-    ], :selected => form.object.role), {prompt: "Seleccione un rol..."}, {class: "form-select"} %>
+    ], :selected => form.object.roles), {prompt: "Seleccione un rol..."}, {class: "form-select"} %>
   </div>
   <div class="mb-3">
     <%= form.label :password, class: "form-label" %>

@@ -19,7 +19,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    role = params[:user][:role]
     if @user.save
+      if role == "Administrador"
+        @user.add_role :admin
+      elsif role == "Personal"
+        @user.add_role :manager      
+      end
       redirect_to @user
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +36,21 @@ class UsersController < ApplicationController
   end
 
   def update
+    role = params[:user][:role]
     if @user.update(user_params)
+      if role == "Administrador"
+        @user.remove_role :manager
+        @user.remove_role :client
+        @user.add_role :admin
+      elsif role == "Personal"
+        @user.remove_role :admin
+        @user.remove_role :client
+        @user.add_role :manager
+      elsif role == "Cliente"
+        @user.remove_role :admin
+        @user.remove_role :manager
+        @user.add_role :client
+      end
       redirect_to @user
     else
       render :edit, status: :unprocessable_entity
