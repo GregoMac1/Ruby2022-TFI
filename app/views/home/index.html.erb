@@ -2,4 +2,8 @@
 
 <hr>
 
-<p><%= Current.user %></p>
+<h4>Bienvenido
+  <% if Current.user %>
+    <%= Current.user.name %>
+  <% end %>
+</h4>
