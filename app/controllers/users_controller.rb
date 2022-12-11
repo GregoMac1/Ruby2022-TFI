@@ -26,10 +26,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     role = params[:user][:role]
-    if @user.save
-      if role == "Administrador"
+    branch_id = params[:user][:branch_id]
+    if (role == "manager") && (branch_id == "")
+      redirect_to new_user_path, alert: "Debe seleccionar una sucursal si el usuario tiene el rol Personal."
+    elsif @user.save
+      if role == "admin"
         @user.add_role :admin
-      elsif role == "Personal"
+      elsif role == "manager"
         @user.add_role :manager      
       end
       redirect_to @user
@@ -43,7 +46,10 @@ class UsersController < ApplicationController
 
   def update
     role = params[:user][:role]
-    if @user.update(user_params)
+    branch_id = params[:user][:branch_id]
+    if (role == "manager") && (branch_id == "")
+      redirect_to edit_user_path, alert: "Debe seleccionar una sucursal si el usuario tiene el rol Personal."
+    elsif @user.update(user_params)
       @user.remove_roles
       if role == "manager"
         @user.add_role :manager
