@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_10_204953) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_040944) do
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -40,6 +40,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_204953) do
     t.index ["branch_id"], name: "index_schedules_on_branch_id"
   end
 
+  create_table "turns", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "branch_id", null: false
+    t.datetime "start_time"
+    t.string "reason"
+    t.string "status"
+    t.integer "manager_id"
+    t.string "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_turns_on_branch_id"
+    t.index ["manager_id"], name: "index_turns_on_manager_id"
+    t.index ["user_id"], name: "index_turns_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "name", null: false
@@ -59,5 +74,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_204953) do
   end
 
   add_foreign_key "schedules", "branches"
+  add_foreign_key "turns", "branches"
+  add_foreign_key "turns", "users"
+  add_foreign_key "turns", "users", column: "manager_id"
   add_foreign_key "users", "branches"
 end
