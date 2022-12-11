@@ -9,4 +9,20 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+
+  def get_role
+    if self.has_role? :admin
+      return :admin
+    elsif self.has_role? :manager
+      return :manager
+    else
+      return :client
+    end
+  end
+
+  def remove_roles
+    self.remove_role :admin
+    self.remove_role :manager
+    self.remove_role :client
+  end
 end

@@ -44,18 +44,16 @@ class UsersController < ApplicationController
   def update
     role = params[:user][:role]
     if @user.update(user_params)
-      if role == "Administrador"
-        @user.remove_role :manager
-        @user.remove_role :client
-        @user.add_role :admin
-      elsif role == "Personal"
-        @user.remove_role :admin
-        @user.remove_role :client
+      @user.remove_roles
+      if role == "manager"
         @user.add_role :manager
-      elsif role == "Cliente"
-        @user.remove_role :admin
-        @user.remove_role :manager
-        @user.add_role :client
+      else
+        @user.branch_id = nil
+        if role == "admin"
+          @user.add_role :admin
+        else
+          @user.add_role :client
+        end
       end
       redirect_to @user
     else

@@ -21,23 +21,46 @@
   </div>
   <div class="mb-3">
     <%= form.label "Rol", class: "form-label" %>
-    <%= form.select :role, options_for_select([
-      "Cliente", "Personal", "Administrador"
-    ], :selected => form.object.roles), {prompt: "Seleccione un rol..."}, {class: "form-select"} %>
+    <%= form.select :role, options_for_select(
+      [["Cliente", :client], ["Personal", :manager], ["Administrador", :admin]],
+      :selected => form.object.get_role
+    ), {}, {class: "form-select", id: "selected-role"} %>
   </div>
-  <% if @user.has_role? :manager %>
+  <div class="mb-3" id="branch-select">
+    <%= form.label "Sucursal", class: "form-label" %>
+    <%= form.select :branch_id, options_for_select(
+      Branch.all.map{|b| [b.name, b.id]},
+      :selected => form.object.branch_id
+    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select"} %>
+  </div>
+  <% if @user.new_record? %>
     <div class="mb-3">
-      <%= form.label "Sucursal", class: "form-label" %>
-      <%= form.select :branch_id, options_for_select(Branch.all.map{|b| [b.name, b.id]}, :selected => form.object.branch_id), {prompt: "Seleccione una sucursal..."}, {class: "form-select"} %>
+      <%= form.label :password, class: "form-label" %>
+      <%= form.password_field :password, class: "form-control", placeholder: "Ingrese una contraseña..." %>
+    </div>
+    <div class="mb-3">
+      <%= form.label "Repetir contraseña", class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Confirme la contraseña..." %>
     </div>
   <% end %>
-  <div class="mb-3">
-    <%= form.label :password, class: "form-label" %>
-    <%= form.password_field :password, class: "form-control", placeholder: "Ingrese una contraseña..." %>
-  </div>
 
   <div class="text-center">
     <%= form.submit class: "btn btn-danger" %>
     <%= link_to "Volver", users_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
+
+<script>
+  var role = document.getElementById("selected-role");
+  var branchSelect = document.getElementById("branch-select");
+
+  function listener() {
+    if (role.value === "manager")
+      branchSelect.style.display = "block";
+    else
+      branchSelect.style.display = "none";
+  };
+
+  role.addEventListener("change", listener);
+  listener();
+</script>
