@@ -16,7 +16,6 @@
       <%= turn.status %>
     </td>
     <td style="text-align: right;">
-      <%= link_to "Ver", turn_path(turn), class: "btn btn-secondary" %>
       <%= link_to "Modificar", edit_turn_path(turn), class: "btn btn-warning" %>
       <%= link_to "Cancelar", turn_path(turn), class: "btn btn-danger", data: {
         turbo_method: "delete",
@@ -42,7 +41,7 @@
       <%= turn.status %>
     </td>
     <td>
-      <%= turn.manager_id %>
+      <%= turn.manager_id ? User.find(turn.manager_id).name : "" %>
     </td>
     <td>
       <%= turn.result %>

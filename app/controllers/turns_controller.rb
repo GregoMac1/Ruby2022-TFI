@@ -17,9 +17,6 @@ class TurnsController < ApplicationController
     @past_turns = Turn.where(client_id: @user.id) - @pending_turns
   end
 
-  def show
-  end
-
   def new
     @turn = Turn.new
   end
