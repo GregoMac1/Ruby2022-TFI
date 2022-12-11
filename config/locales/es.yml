@@ -17,7 +17,8 @@ es:
       turn:
         client: Cliente
         branch: Sucursal
-        start_time: Fecha
+        date: Fecha
+        time: Hora
         reason: Motivo
         status: Estado
         manager: Responsable

@@ -1,0 +1,51 @@
+<% if local_assigns[:pending] %>
+  <tr>
+    <td>
+      <%= Branch.find(turn.branch_id).name %>
+    </td>
+    <td>
+      <%= turn.date.strftime("%d/%m/%Y") %>
+    </td>
+    <td>
+      <%= turn.time.strftime("%H:%M") %>
+    </td>
+    <td>
+      <%= turn.reason %>
+    </td>
+    <td>
+      <%= turn.status %>
+    </td>
+    <td style="text-align: right;">
+      <%= link_to "Ver", turn_path(turn), class: "btn btn-secondary" %>
+      <%= link_to "Modificar", edit_turn_path(turn), class: "btn btn-warning" %>
+      <%= link_to "Cancelar", turn_path(turn), class: "btn btn-danger", data: {
+        turbo_method: "delete",
+        turbo_confirm: "¿Estás seguro?"
+      } %>
+    </td>
+  </tr>
+<% else %>
+  <tr>
+    <td>
+      <%= Branch.find(turn.branch_id).name %>
+    </td>
+    <td>
+      <%= turn.date.strftime("%d/%m/%Y") %>
+    </td>
+    <td>
+      <%= turn.time.strftime("%H:%M") %>
+    </td>
+    <td>
+      <%= turn.reason %>
+    </td>
+    <td>
+      <%= turn.status %>
+    </td>
+    <td>
+      <%= turn.manager_id %>
+    </td>
+    <td>
+      <%= turn.result %>
+    </td>
+  </tr>
+<% end %>

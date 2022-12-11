@@ -1,10 +1,10 @@
-<%= form_with model: @branch do |form| %>
-  <% if @branch.errors.any? %>
+<%= form_with model: @turn do |form| %>
+  <% if @turn.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <strong>Se detectaron errores:</strong>
 
       <ul>
-      <% @branch.errors.full_messages.each do |message| %>
+      <% @turn.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,20 +12,27 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control", placeholder: "Ingrese un nombre..." %>
+    <%= form.label "Sucursal", class: "form-label" %>
+    <%= form.select :branch_id, options_for_select(
+      Branch.all.map { |branch| [branch.name, branch.id] },
+      :selected => form.object.branch_id
+    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select"} %>
   </div>
   <div class="mb-3">
-    <%= form.label :address, class: "form-label" %>
-    <%= form.text_field :address, class: "form-control", placeholder: "Ingrese una dirección..." %>
+    <%= form.label :date, class: "form-label" %>
+    <%= form.date_field :date, class: "form-control" %>
   </div>
   <div class="mb-3">
-    <%= form.label :phone, class: "form-label" %>
-    <%= form.text_field :phone, class: "form-control", placeholder: "Ingrese un teléfono..." %>
+    <%= form.label :time, class: "form-label" %>
+    <%= form.time_field :time, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :reason, class: "form-label" %>
+    <%= form.text_field :reason, class: "form-control", placeholder: "Indique el motivo..." %>
   </div>
 
   <div class="text-center">
     <%= form.submit class: "btn btn-danger" %>
-    <%= link_to "Volver", branches_path, class: "btn btn-secondary" %>
+    <%= link_to "Volver", turns_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

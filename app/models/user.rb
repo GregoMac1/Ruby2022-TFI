@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :turns
   rolify
   has_secure_password
   after_create :assign_default_role

@@ -39,7 +39,7 @@
               <% if Current.user %>
                 <% if Current.user.has_role? :client %>
                   <li class="nav-item">
-                    <a class="nav-link" href="/users/<%= Current.user.id %>/turns">Mis turnos</a>
+                    <a class="nav-link" href="/turns">Mis turnos</a>
                   </li>
                 <% else %>
                   <li class="nav-item dropdown">                                

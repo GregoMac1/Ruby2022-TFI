@@ -1,66 +1,49 @@
 <div class="row">
   <div class="col">
-    <h3>Sucursal</h3>
+    <h3>Turno</h3>
   </div>
-  <% if Current.user.has_role? :admin %>
-    <div class="col" style="text-align: right;">
-      <%= link_to "Editar", edit_branch_path(@branch), class: "btn btn-warning" %>
-      <%= link_to "Borrar", branch_path(@branch), class: "btn btn-danger", data: {
-        turbo_method: "delete",
-        turbo_confirm: "¿Estás seguro?"
-      } %>
-    </div>
-  <% end %>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Modificar", edit_turn_path(@turn), class: "btn btn-warning" %>
+    <%= link_to "Borrar", turn_path(@turn), class: "btn btn-danger", data: {
+      turbo_method: "delete",
+      turbo_confirm: "¿Estás seguro?"
+    } %>
+  </div>
 </div>
 
 <hr>
 
 <p>
-  <strong>Nombre:</strong>
-  <%= @branch.name %>
+  <strong>Sucursal:</strong>
+  <%= Branch.find(@turn.branch_id).name %>
 </p>
 <p>
-  <strong>Dirección:</strong>
-  <%= @branch.address %>
+  <strong>Fecha:</strong>
+  <%= @turn.date.strftime("%d/%m/%Y") %>
 </p>
 <p>
-  <strong>Teléfono:</strong>
-  <%= @branch.phone %>
+  <strong>Hora:</strong>
+  <%= @turn.time.strftime("%H:%M") %>
 </p>
-
-<br>
-
-<div class="row">
-  <div class="col">
-    <h4>Horarios</h4>
-  </div>
-  <% if Current.user.has_role? :admin %>
-    <div class="col" style="text-align: right;">
-      <%= link_to "Agregar", new_branch_schedule_path(@branch), class: "btn btn-danger" %>
-    </div>
-  <% end %>
-</div>
-
-<hr>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Día</th>
-      <th scope="col">Hora de apertura</th>
-      <th scope="col">Hora de cierre</th>
-      <% if Current.user.has_role? :admin %>
-        <th scope="col" style="text-align: right;">Acciones</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @branch.schedules %>
-  </tbody>
-</table>
+<p>
+  <strong>Motivo:</strong>
+  <%= @turn.reason %>
+</p>
+<p>
+  <strong>Estado:</strong>
+  <%= @turn.status %>
+</p>
+<p>
+  <strong>Responsable:</strong>
+  <%= @turn.manager_id %>
+</p>
+<p>
+  <strong>Resultado:</strong>
+  <%= @turn.result %>
+</p>
 
 <br>
 
 <div class="text-center">
-  <%= link_to "Volver", branches_path, class: "btn btn-secondary" %>
+  <%= link_to "Volver", turns_path, class: "btn btn-secondary" %>
 </div>

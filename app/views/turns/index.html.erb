@@ -3,43 +3,53 @@
     <h3>Mis turnos</h3>
   </div>
   <div class="col" style="text-align: right;">
-    <%= link_to "Solicitar turno", new_user_turn_path(@user), class: "btn btn-danger" %>
+    <%= link_to "Solicitar turno", new_turn_path, class: "btn btn-danger" %>
   </div>
 </div>
 
 <hr>
 
 <h4>Turnos pendientes</h4>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sucursal</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Motivo</th>
-      <th scope="col">Estado</th>
-      <th scope="col" style="text-align: right;">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @pending_turns %>
-  </tbody>
-</table>
+<% if @pending_turns.empty? %>
+  <p class="alert alert-warning">No hay turnos pendientes.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Motivo</th>
+        <th scope="col">Estado</th>
+        <th scope="col" style="text-align: right;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @pending_turns, pending: true %>
+    </tbody>
+  </table>
+<% end %>
 
 <hr>
 
 <h4>Turnos pasados</h4>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sucursal</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Motivo</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Responsable</th>
-      <th scope="col" style="text-align: right;">Resultado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @pending_turns %>
-  </tbody>
-</table>
+<% if @past_turns.empty? %>
+  <p class="alert alert-warning">No hay turnos pasados.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Motivo</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Responsable</th>
+        <th scope="col" style="text-align: right;">Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @past_turns, pending: false %>
+    </tbody>
+  </table>
+<% end %>

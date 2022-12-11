@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_044100) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_195718) do
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -42,14 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_044100) do
 
   create_table "turns", force: :cascade do |t|
     t.integer "branch_id", null: false
-    t.datetime "start_time"
     t.string "reason"
-    t.string "status"
+    t.string "status", default: "pending"
     t.integer "manager_id"
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "client_id", null: false
+    t.date "date"
+    t.time "time"
     t.index ["branch_id"], name: "index_turns_on_branch_id"
     t.index ["client_id"], name: "index_turns_on_client_id"
     t.index ["manager_id"], name: "index_turns_on_manager_id"
