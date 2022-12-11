@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col">
+    <h3>Mis turnos</h3>
+  </div>
+  <div class="col" style="text-align: right;">
+    <%= link_to "Solicitar turno", new_user_turn_path(@user), class: "btn btn-danger" %>
+  </div>
+</div>
+
+<hr>
+
+<h4>Turnos pendientes</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sucursal</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Motivo</th>
+      <th scope="col">Estado</th>
+      <th scope="col" style="text-align: right;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @pending_turns %>
+  </tbody>
+</table>
+
+<hr>
+
+<h4>Turnos pasados</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sucursal</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Motivo</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Responsable</th>
+      <th scope="col" style="text-align: right;">Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @pending_turns %>
+  </tbody>
+</table>

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :schedules
   end
 
-  resources :users
+  resources :users do
+    resources :turns
+  end
   
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
