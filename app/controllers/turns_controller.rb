@@ -1,7 +1,8 @@
 class TurnsController < ApplicationController
-  before_action :get_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :get_turn, only: [:show, :edit, :update, :destroy]
+  before_action :get_user, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :get_turn, only: [:edit, :update, :destroy]
   before_action :require_user_logged_in!
+  before_action :require_client!
 
   def get_user
     @user = Current.user
@@ -12,7 +13,9 @@ class TurnsController < ApplicationController
   end
 
   def index
-    puts Turn.first.inspect
+    Turn.where(
+      client_id: @user.id, status: "pending", date: Date.today - 1.day
+    ).update_all(status: "not_attended")
     @pending_turns = Turn.where(client_id: @user.id, status: "pending")
     @past_turns = Turn.where(client_id: @user.id) - @pending_turns
   end

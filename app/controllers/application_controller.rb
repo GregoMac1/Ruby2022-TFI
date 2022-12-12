@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "No tiene permisos para acceder a esta página." unless Current.user.has_role? :manager
   end
 
+  def require_client!
+    redirect_to root_path, alert: "No tiene permisos para acceder a esta página." unless Current.user.has_role? :client
+  end
+
   def require_at_least_manager!
     if (Current.user.has_role?(:manager) || Current.user.has_role?(:admin))
       return
