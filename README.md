@@ -23,3 +23,13 @@
     ```bash
     rails server
     ```
+7. Se puede acceder con los siguientes usuarios:
+    - Usuario Administrador:
+        - Email: juan@gmail.com
+        - Contraseña: Ruby2022
+    - Usuario Personal:
+        - Email: carlos@gmail.com
+        - Contraseña: Ruby2022
+    - Usuario Cliente:
+        - Email: marcos@gmail.com
+        - Contraseña: Ruby2022

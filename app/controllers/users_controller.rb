@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    puts Current.user.get_role
     if Current.user.has_role? :admin
       @users = User.all
     else
