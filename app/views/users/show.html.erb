@@ -25,13 +25,7 @@
 </p>
 <p>
   <strong>Rol:</strong>
-  <% if @user.has_role? :admin %>
-    Administrador
-  <% elsif @user.has_role? :manager %>
-    Personal
-  <% elsif @user.has_role? :client %>
-    Cliente
-  <% end %>
+  <%= @user.get_role_name %>
 </p>
 <% if @user.has_role? :manager %>
   <p>

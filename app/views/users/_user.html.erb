@@ -6,13 +6,7 @@
     <%= user.name %>
   </td>
   <td>
-    <% if user.has_role? :admin %>
-      Administrador
-    <% elsif user.has_role? :manager %>
-      Personal
-    <% elsif user.has_role? :client %>
-      Cliente
-    <% end %>
+    <%= user.get_role_name %>
   </td>
   <td>
     <% if (user.has_role? :manager) && (user.branch_id) %>

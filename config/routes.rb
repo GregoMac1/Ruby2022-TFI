@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :users
   
   resources :turns
+
+  get "attend", to: "attend#index"
+  post "attend/:id", to: "attend#attend", as: "attend_turn"
   
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"

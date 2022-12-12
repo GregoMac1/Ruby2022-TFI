@@ -1,0 +1,22 @@
+<h3>Turnos para atender</h3>
+
+<% if @turns.empty? %>
+  <p class="alert alert-warning">No hay turnos para atender.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Motivo</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Responsable</th>
+        <th scope="col" style="text-align: right;">Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @turns, pending: false %>
+    </tbody>
+  </table>
+<% end %>

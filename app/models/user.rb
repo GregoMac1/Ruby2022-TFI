@@ -20,6 +20,16 @@ class User < ApplicationRecord
     end
   end
 
+  def get_role_name
+    if self.has_role? :admin
+      return "Administrador"
+    elsif self.has_role? :manager
+      return "Personal"
+    else
+      return "Cliente"
+    end
+  end
+
   def remove_roles
     self.remove_role :admin
     self.remove_role :manager

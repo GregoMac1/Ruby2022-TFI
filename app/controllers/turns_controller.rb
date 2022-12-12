@@ -1,5 +1,5 @@
 class TurnsController < ApplicationController
-  before_action :get_user, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :get_user, only: [:index, :create]
   before_action :get_turn, only: [:edit, :update, :destroy]
   before_action :require_user_logged_in!
   before_action :require_client!
