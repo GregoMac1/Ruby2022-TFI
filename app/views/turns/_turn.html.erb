@@ -13,7 +13,7 @@
       <%= turn.reason %>
     </td>
     <td>
-      <%= turn.status %>
+      <%= turn.get_status_name %>
     </td>
     <td style="text-align: right;">
       <%= link_to "Modificar", edit_turn_path(turn), class: "btn btn-warning" %>
@@ -38,7 +38,7 @@
       <%= turn.reason %>
     </td>
     <td>
-      <%= turn.status %>
+      <%= turn.get_status_name %>
     </td>
     <td>
       <%= turn.manager_id ? User.find(turn.manager_id).name : "" %>
