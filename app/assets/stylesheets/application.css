@@ -29,3 +29,8 @@ body {
   background-color: #CC0000;
   border-color: #CC0000;
 }
+
+.accordion-button:not(.collapsed){
+  color: black;
+  background: #f9aeae;
+}
