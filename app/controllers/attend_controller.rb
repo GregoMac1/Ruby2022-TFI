@@ -14,11 +14,11 @@ class AttendController < ApplicationController
   def attend
     @turn = Turn.find(params[:id])
     if params[:result].blank?
-      redirect_to "/attend", alert: "Debe ingresar un resultado."
+      redirect_to attend_path, alert: "Debe ingresar un resultado."
     elsif @turn.update(status: "attended", manager_id: @user.id, result: params[:result])
-      redirect_to "/attend", notice: "Se ha atendido el turno."
+      redirect_to attend_path, notice: "Se ha atendido el turno."
     else
-      redirect_to "/attend", alert: "No se ha podido atender el turno."
+      redirect_to attend_path, alert: "No se ha podido atender el turno."
     end
   end
 end

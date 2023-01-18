@@ -18,7 +18,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid" style="padding-left: 3%; padding-right: 3%;">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href=<%= root_path %>>
           <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-text-top" style="margin-right: 5%;">
           Banco Ruby
         </a>
@@ -39,12 +39,12 @@
               <% if Current.user %>
                 <% if Current.user.has_role? :client %>
                   <li class="nav-item">
-                    <a class="nav-link" href="/turns">Mis turnos</a>
+                    <a class="nav-link" href=<%= turns_path %>>Mis turnos</a>
                   </li>
                 <% else %>
                   <% if Current.user.has_role? :manager %>
                     <li class="nav-item">
-                      <a class="nav-link" href="/attend">Atender</a>
+                      <a class="nav-link" href=<%= attend_path %>>Atender</a>
                     </li>
                   <% end %>
                   <li class="nav-item dropdown">                                
@@ -52,8 +52,8 @@
                       Gestionar
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="/branches">Sucursales</a></li>
-                      <li><a class="dropdown-item" href="/users">Usuarios</a></li>
+                      <li><a class="dropdown-item" href=<%= branches_path %>>Sucursales</a></li>
+                      <li><a class="dropdown-item" href=<%= users_path %>>Usuarios</a></li>
                     </ul>
                   </li>
                 <% end %>
@@ -62,13 +62,13 @@
                     <%= Current.user.name %>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/profile">Mi perfil</a></li>
-                    <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item" href=<%= profile_path %>>Mi perfil</a></li>
+                    <li><a class="dropdown-item" href=<%= logout_path %>>Cerrar sesión</a></li>
                   </ul>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <a class="nav-link" href="/sign_in">Acceder</a>
+                  <a class="nav-link" href=<%= sign_in_path %>>Acceder</a>
                 </li>
               <% end %>
             </ul>
