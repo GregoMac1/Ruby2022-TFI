@@ -13,6 +13,7 @@ class AttendController < ApplicationController
 
   def attend
     @turn = Turn.find(params[:id])
+    authorize! :update, @turn
     if params[:result].blank?
       redirect_to attend_path, alert: "Debe ingresar un resultado."
     elsif @turn.update(status: "attended", manager_id: @user.id, result: params[:result])

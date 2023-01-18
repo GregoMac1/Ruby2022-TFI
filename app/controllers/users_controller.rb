@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :get_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in!
   before_action :require_at_least_manager!

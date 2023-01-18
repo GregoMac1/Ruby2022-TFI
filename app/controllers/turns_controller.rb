@@ -1,4 +1,5 @@
 class TurnsController < ApplicationController
+  load_and_authorize_resource
   before_action :get_user, only: [:index, :create]
   before_action :get_turn, only: [:edit, :update, :destroy]
   before_action :require_user_logged_in!

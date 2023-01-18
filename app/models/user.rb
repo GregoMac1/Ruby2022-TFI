@@ -10,6 +10,14 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
+  def admin?
+    self.has_role? :admin
+  end
+
+  def manager?
+    self.has_role? :manager
+  end
+
   def get_role
     if self.has_role? :admin
       return :admin
@@ -21,9 +29,10 @@ class User < ApplicationRecord
   end
 
   def get_role_name
-    if self.has_role? :admin
+    case self.get_role
+    when :admin
       return "Administrador"
-    elsif self.has_role? :manager
+    when :manager
       return "Personal"
     else
       return "Cliente"

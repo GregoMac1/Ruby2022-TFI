@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  load_and_authorize_resource
   before_action :get_branch, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :get_schedule, only: [:edit, :update, :destroy]
   before_action :require_user_logged_in!
