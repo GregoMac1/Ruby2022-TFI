@@ -5,14 +5,14 @@ class Ability
     return unless user.present?
     can :manage, Turn, client_id: user.id
 
-    return unless user.manager?
-    can [:read, :update], Turn, branch_id: user.branch_id
-    can :read, Branch, id: user.branch_id
-    can :read, User do |u|
-      u.get_role == :client
+    if user.manager?
+      can [:read, :update], Turn, branch_id: user.branch_id
+      can :read, Branch, id: user.branch_id
+      can :read, User do |u|
+        u.get_role == :client
+      end
+    elsif user.admin?
+      can :manage, :all
     end
-
-    return unless user.admin?
-    can :manage, :all
   end
 end

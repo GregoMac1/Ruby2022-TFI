@@ -1,7 +1,5 @@
 class AttendController < ApplicationController
   before_action :get_user
-  before_action :require_user_logged_in!
-  before_action :require_manager!
 
   def get_user
     @user = Current.user

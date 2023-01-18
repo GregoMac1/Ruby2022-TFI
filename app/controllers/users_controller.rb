@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_user_logged_in!
-  before_action :require_at_least_manager!
-  before_action :require_admin!, except: [:index, :show]
 
   def get_user
     @user = User.find(params[:id])
   end
 
   def index
-    puts Current.user.get_role
     if Current.user.has_role? :admin
       @users = User.all
     else
@@ -77,6 +73,5 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:email, :name, :password, :branch_id)
-    end
-    
+    end    
 end

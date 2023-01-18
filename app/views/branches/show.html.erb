@@ -2,7 +2,7 @@
   <div class="col">
     <h3>Sucursal</h3>
   </div>
-  <% if Current.user.has_role? :admin %>
+  <% if can? :manage, @branch %>
     <div class="col" style="text-align: right;">
       <%= link_to "Editar", edit_branch_path(@branch), class: "btn btn-warning" %>
       <%= link_to "Borrar", branch_path(@branch), class: "btn btn-danger", data: {
@@ -34,7 +34,7 @@
   <div class="col">
     <h4>Horarios</h4>
   </div>
-  <% if Current.user.has_role? :admin %>
+  <% if can? :create, Schedule %>
     <div class="col" style="text-align: right;">
       <%= link_to "Agregar", new_branch_schedule_path(@branch), class: "btn btn-danger" %>
     </div>
@@ -49,7 +49,7 @@
       <th scope="col">Día</th>
       <th scope="col">Hora de apertura</th>
       <th scope="col">Hora de cierre</th>
-      <% if Current.user.has_role? :admin %>
+      <% if can? :manage, @branch %>
         <th scope="col" style="text-align: right;">Acciones</th>
       <% end %>
     </tr>

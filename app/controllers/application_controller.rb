@@ -13,31 +13,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "No tiene permisos para acceder a esta página."
   end
 
-  def require_user_logged_in!
-    redirect_to sign_in_path, alert: "No ha iniciado sesión." if Current.user.nil?
-  end
-
   def require_user_not_logged_in!
     redirect_to root_path, notice: "Ya ha iniciado sesión." unless Current.user.nil?
-  end
-
-  def require_admin!
-    redirect_to root_path, alert: "No tiene permisos para acceder a esta página." unless Current.user.has_role? :admin
-  end
-
-  def require_manager!
-    redirect_to root_path, alert: "No tiene permisos para acceder a esta página." unless Current.user.has_role? :manager
-  end
-
-  def require_client!
-    redirect_to root_path, alert: "No tiene permisos para acceder a esta página." unless Current.user.has_role? :client
-  end
-
-  def require_at_least_manager!
-    if (Current.user.has_role?(:manager) || Current.user.has_role?(:admin))
-      return
-    else
-      redirect_to root_path, alert: "No tiene permisos para acceder a esta página."
-    end
   end
 end

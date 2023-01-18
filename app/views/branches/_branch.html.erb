@@ -10,7 +10,7 @@
   </td>
   <td style="text-align: right;">
     <%= link_to "Ver", branch_path(branch), class: "btn btn-secondary" %>
-    <% if Current.user.has_role? :admin %>
+    <% if can? :manage, branch %>
       <%= link_to "Editar", edit_branch_path(branch), class: "btn btn-warning" %>
       <%= link_to "Borrar", branch_path(branch), class: "btn btn-danger", data: {
         turbo_method: "delete",

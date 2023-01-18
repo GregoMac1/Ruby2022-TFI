@@ -2,7 +2,7 @@
   <div class="col">
     <h3>Sucursales</h3>
   </div>
-  <% if Current.user.has_role? :admin %>
+  <% if can? :create, Branch %>
     <div class="col" style="text-align: right;">
       <%= link_to "Nueva", new_branch_path, class: "btn btn-danger" %>
     </div>
