@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :branches do
     resources :schedules
   end
-
+  
+  get "api/branches/:branch_id/schedules", to: "api#branch_schedules"
+  
   resources :users
   
   resources :turns

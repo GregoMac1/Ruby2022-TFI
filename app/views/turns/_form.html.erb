@@ -16,7 +16,30 @@
     <%= form.select :branch_id, options_for_select(
       Branch.all.map { |branch| [branch.name, branch.id] },
       :selected => form.object.branch_id
-    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select"} %>
+    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select", onChange: "
+      fetch(`/api/branches/${this.value}/schedules`)
+        .then(response => response.json())
+        .then(data => {
+          const schedules_list = document.getElementById('branch_schedules_list');
+          schedules_list.innerHTML = '';
+          data.forEach(schedule => {
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(
+              `${schedule.day} de ${new Date(schedule.start)
+                .toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}
+              a ${new Date(schedule.end)
+                .toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}`
+            ));
+            schedules_list.appendChild(li);
+          });
+          const schedules_block = document.getElementById('branch_schedules_block');
+          schedules_block.style.display = 'block';
+        });
+    "} %>
+  </div>
+  <div class="mb-3" id="branch_schedules_block" style="display: none;">
+    <p class="form-label">Horarios de la sucursal seleccionada:</p>
+    <ul id="branch_schedules_list"></ul>
   </div>
   <div class="mb-3">
     <%= form.label :date, class: "form-label" %>
