@@ -16,7 +16,7 @@
     <%= form.select :branch_id, options_for_select(
       Branch.all.map { |branch| [branch.name, branch.id] },
       :selected => form.object.branch_id
-    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select", onChange: "
+    ), {prompt: "Seleccione una sucursal..."}, {class: "form-select", id: "turn_branch_id", onChange: "
       fetch(`/api/branches/${this.value}/schedules`)
         .then(response => response.json())
         .then(data => {
@@ -32,22 +32,64 @@
             ));
             schedules_list.appendChild(li);
           });
-          const schedules_block = document.getElementById('branch_schedules_block');
+          const schedules_block = document.getElementById('time_select');
           schedules_block.style.display = 'block';
         });
     "} %>
   </div>
-  <div class="mb-3" id="branch_schedules_block" style="display: none;">
-    <p class="form-label">Horarios de la sucursal seleccionada:</p>
-    <ul id="branch_schedules_list"></ul>
-  </div>
-  <div class="mb-3">
-    <%= form.label :date, class: "form-label" %>
-    <%= form.date_field :date, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :time, class: "form-label" %>
-    <%= form.time_field :time, class: "form-control" %>
+  <div id="time_select" style="display: none;">
+    <div class="mb-3">
+      <p class="form-label">Horarios de la sucursal seleccionada:</p>
+      <ul id="branch_schedules_list"></ul>
+    </div>
+    <div class="mb-3">
+      <%= form.label :date, class: "form-label" %>
+      <%= form.date_field :date, class: "form-control", min: Date.tomorrow, onChange: "
+        let day;
+        switch (new Date(this.value).getDay()) {
+          case 0:
+            day = 'Lunes';
+            break;
+          case 1:
+            day = 'Martes';
+            break;
+          case 2:
+            day = 'Miércoles';
+            break;
+          case 3:
+            day = 'Jueves';
+            break;
+          case 4:
+            day = 'Viernes';
+            break;
+          case 5:
+            day = 'Sábado';
+            break;
+          case 6:
+            day = 'Domingo';
+            break;
+        }
+        fetch(`/api/branches/${document.getElementById('turn_branch_id').value}/schedules`)
+          .then(response => response.json())
+          .then(data => {
+            const schedule = data.filter(schedule => schedule.day === day)[0] || undefined;
+            const time_select = document.getElementById('turn_time');
+            if (schedule) {
+              time_select.min = schedule.start.split('T')[1].split('-')[0];
+              time_select.max = schedule.end.split('T')[1].split('-')[0];
+            } else {
+              time_select.min = '';
+              time_select.max = '';
+              time_select.value = '';
+              alert('La sucursal seleccionada no abre ese día.');
+            }
+          });
+      " %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :time, class: "form-label" %>
+      <%= form.time_field :time, class: "form-control", id: "turn_time" %>
+    </div>
   </div>
   <div class="mb-3">
     <%= form.label :reason, class: "form-label" %>
