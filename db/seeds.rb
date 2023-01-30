@@ -10,18 +10,14 @@ Schedule.create(branch_id: 1, day: "Viernes", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 1, day: "Sábado", start: "08:00", end: "12:00")
 
 Schedule.create(branch_id: 2, day: "Lunes", start: "08:00", end: "15:00")
-Schedule.create(branch_id: 2, day: "Martes", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 2, day: "Miércoles", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 2, day: "Jueves", start: "08:00", end: "15:00")
-Schedule.create(branch_id: 2, day: "Viernes", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 2, day: "Sábado", start: "08:00", end: "12:00")
 
-Schedule.create(branch_id: 3, day: "Lunes", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 3, day: "Martes", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 3, day: "Miércoles", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 3, day: "Jueves", start: "08:00", end: "15:00")
 Schedule.create(branch_id: 3, day: "Viernes", start: "08:00", end: "15:00")
-Schedule.create(branch_id: 3, day: "Sábado", start: "08:00", end: "12:00")
 
 admin = User.create(email: "juan@gmail.com", name: "Juan Pérez", password: "Ruby2022")
 manager = User.create(email: "carlos@gmail.com", name: "Carlos Sánchez", password: "Ruby2022")
