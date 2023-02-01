@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_195718) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_01_183642) do
   create_table "branches", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "phone"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,9 +31,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_195718) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string "day"
-    t.time "start"
-    t.time "end"
+    t.string "day", null: false
+    t.time "start", null: false
+    t.time "end", null: false
     t.integer "branch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,15 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_195718) do
 
   create_table "turns", force: :cascade do |t|
     t.integer "branch_id", null: false
-    t.string "reason"
-    t.string "status", default: "pending"
+    t.string "reason", null: false
+    t.string "status", default: "pending", null: false
     t.integer "manager_id"
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "client_id", null: false
-    t.date "date"
-    t.time "time"
+    t.date "date", null: false
+    t.time "time", null: false
     t.index ["branch_id"], name: "index_turns_on_branch_id"
     t.index ["client_id"], name: "index_turns_on_client_id"
     t.index ["manager_id"], name: "index_turns_on_manager_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_195718) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.integer "branch_id"
     t.index ["branch_id"], name: "index_users_on_branch_id"
   end

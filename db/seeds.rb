@@ -28,5 +28,5 @@ admin.remove_roles
 admin.add_role :admin
 
 manager.remove_roles
-manager.add_role :manager
 manager.update(branch_id: 1)
+manager.add_role :manager

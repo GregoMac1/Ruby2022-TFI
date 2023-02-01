@@ -2,6 +2,8 @@ class Turn < ApplicationRecord
   belongs_to :branch
   belongs_to :client, class_name: "User"
   belongs_to :manager, class_name: "User", optional: true
+  validates :manager_id, presence: true, if: :attended?
+  validates :result, presence: { message: "Debe ingresar un resultado" }, if: :attended?
   validates :date, :time, :reason, presence: true
   validates :date, comparison: { greater_than: Date.current, message: "La fecha debe ser posterior a la actual" }
   validate :time_is_valid?
@@ -25,5 +27,9 @@ class Turn < ApplicationRecord
     when "not_attended"
       "No atendido"
     end
+  end
+
+  def attended?
+    status == "attended"
   end
 end
