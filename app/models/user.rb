@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 8 }
+  validates :branch_id, presence: { message: "Debe seleccionar una sucursal" }, if: :manager?
 
   def admin?
     self.has_role? :admin

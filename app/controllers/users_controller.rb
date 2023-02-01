@@ -24,15 +24,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     role = params[:user][:role]
-    branch_id = params[:user][:branch_id]
-    if (role == "manager") && (branch_id == "")
-      redirect_to new_user_path, alert: "Debe seleccionar una sucursal si el usuario tiene el rol Personal."
-    elsif @user.save
-      if role == "admin"
-        @user.add_role :admin
-      elsif role == "manager"
-        @user.add_role :manager      
-      end
+    if role == "admin"
+      @user.add_role :admin
+    elsif role == "manager"
+      @user.add_role :manager      
+    end
+    if @user.save      
       redirect_to @user
     else
       render :new, status: :unprocessable_entity
