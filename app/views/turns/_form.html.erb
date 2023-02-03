@@ -45,30 +45,11 @@
     <div class="mb-3">
       <%= form.label :date, class: "form-label" %>
       <%= form.date_field :date, class: "form-control", min: Date.tomorrow, onChange: "
-        let day;
-        switch (new Date(this.value).getDay()) {
-          case 0:
-            day = 'Lunes';
-            break;
-          case 1:
-            day = 'Martes';
-            break;
-          case 2:
-            day = 'Miércoles';
-            break;
-          case 3:
-            day = 'Jueves';
-            break;
-          case 4:
-            day = 'Viernes';
-            break;
-          case 5:
-            day = 'Sábado';
-            break;
-          case 6:
-            day = 'Domingo';
-            break;
-        }
+        let day = new Date(this.value).toLocaleDateString('es-AR', {
+          weekday: 'long',
+          timeZone: 'UTC'
+        });
+        day = day.charAt(0).toUpperCase() + day.slice(1);
         fetch(`/api/branches/${document.getElementById('turn_branch_id').value}/schedules`)
           .then(response => response.json())
           .then(data => {
